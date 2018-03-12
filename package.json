@@ -1,0 +1,33 @@
+{
+  "name": "FarmMercantile",
+  "version": "1.0.0",
+  "description": "Uzairs Farm And Mercantile",
+  "engines": {
+    "node": ">= 7.6.0"
+  },
+  "scripts": {
+    "start": "node ./start.js",
+    "test": "nodemon ./start.js --ignore public/"
+  },
+  "author": "Uzair Fasih",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "bootbot": "^1.0.14",
+    "bootbothook": "^1.0.13",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.1.1",
+    "mongoose": "^5.0.1",
+    "mongoose-text-search": "0.0.2",
+    "nodemailer": "^4.4.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

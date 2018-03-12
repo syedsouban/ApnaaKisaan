@@ -1,0 +1,15 @@
+    
+    start.js				<!-- server start -->
+    app.js				<!-- server maintain -->
+    - models
+    ------ user.js  			<!-- user model | Farmer | Customer -->
+    ------ product.js			<!-- product model -->
+    ------ marketRates.js		<!-- market Rates model -->
+    - routes
+    ------ index.js    			<!-- all the routes for our application -->
+    - controllers
+    ------ user_controller.js
+    ------ produceManipulate.js
+    ------ auth_controller.js       
+    - package.json      		<!-- handle our npm packages -->
+    - variables.env			<!-- backend information -->
