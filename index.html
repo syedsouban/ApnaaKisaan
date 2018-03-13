@@ -1,0 +1,126 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Apna Kisaan | Trading made easy for farmers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="./main.css" type="text/css">
+    <!-- <link rel="stylesheet" href="./grid.css" type="text/css"> -->
+    <link rel="grid.css" type="text/css">
+    <script src="owl-carousel/docs/assets/vendors/jquery.min.js"></script>
+    <script src="owl-carousel/docs/assets/owlcarousel/owl.carousel.js"></script>
+    <link rel="stylesheet" href="owl-carousel/docs/assets/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl-carousel/docs/assets/owlcarousel/assets/owl.theme.default.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet'>
+    <!--<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed 
+    <script src="bootstrap/js/bootstrap.min.js"></script>-->
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a class="heading" href="#">Warehouse</a>
+        <a href="#" class="heading">Products</a>
+        <a href="#" class="heading">Contact-Us</a>
+      </div>
+    <div class="nav">
+      <ul>
+          <li><span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span><button class="menu-btn "></span></button></li>
+          <li><span class="logo"><img src="img/apna kisaan.png" class="menu-img"></span></li>
+          <li class="cart"><img src="img/online-shopping-cart.png" ></span></li>
+          <li class="login"><a class="active" href="#about">Login</a></li>
+      </ul>
+    </div>
+    <div class="search">
+      <form action="searchresults.html" method="GET">
+        <input type="text" class="search-box" size="50" placeholder="Search.." name="FirstName" onclick="searchClicked()">
+        <input type="submit" style="visibility: hidden;" />
+        <hr>
+      </form>
+    </div>
+   <div class="home-demo">
+            <div class="row">
+              <div class="large-12 columns">
+                  <p class="heading">Trending Products</p>
+                <div class="owl-carousel" id="item_holder">
+                  <div class="item"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+    <script>
+      var xhr;
+      function searchClicked()
+      {
+        window.location="searchresults.html"
+      }
+      //var baseUrl = 'https://juvendelin.localtunnel.me/';
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+      $(function() {
+      $('form').each(function() {
+        $(this).find('input').keypress(function(e) {
+          // Enter pressed?
+          if(e.which == 10 || e.which == 13) {
+            this.form.submit();
+          }
+        });
+        $(this).find('input[type=submit]').hide();
+      });
+    });
+      var owl = $('.owl-carousel');
+      owl.owlCarousel({
+        margin: 10,
+        loop: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1000: {
+            items: 3
+          }
+        }
+      })
+      function sendData() {
+  xhr = new XMLHttpRequest();
+  xhr.open("GET", 'https://apnakisaan.herokuapp.com/trending_products', true);
+  //Send the proper header information along with the request
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function() {//Call a function when the state changes.
+      if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+          let serverRes = JSON.parse(xhr.responseText);
+              console.log(serverRes);
+              console.log(typeof(serverRes));
+              console.log(serverRes.data.length);
+              
+          for(var i=0;i<JSON.parse(JSON.parse(xhr.response).data).length;i++){
+              var owl_item = document.createElement("DIV");
+              owl_item.className = "owl-item cloned";
+              var img = document.createElement("img");
+              img.src = JSON.parse(JSON.parse(xhr.response).data)[i].image;
+              console.log(serverRes.data[i]);
+              var src = document.getElementsByClassName("owl-stage")[i].childNodes; 
+              var items = document.createElement("DIV");
+              items.className = "item";
+              items.appendChild(img);
+              owl_item.appendChild(items);
+              src[0].appendChild(img);
+          }
+      }
+  }
+  xhr.send(null);
+}
+sendData();
+    </script>
+</body>
+</html>

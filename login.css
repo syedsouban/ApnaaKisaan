@@ -1,0 +1,13 @@
+.form{
+    width: 500px;
+    height: 500px;
+    margin: 250px 0px 200px 500px;
+    border: 1px;
+}
+body{
+    background-color: #ffffff
+}
+.inputs{
+    width: 400px;
+    height: 50px;
+}

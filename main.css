@@ -1,0 +1,128 @@
+html{
+    font-size: 10px;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.menu-btn{
+    border-radius: 1rem;
+    background-color: white;
+    border: none;
+    margin: 2rem;
+}
+.menu-btn:focus{
+    border-style: none;
+}
+.menu-img{
+    height: 4.5rem;
+}
+.menu-img1{
+    height: 3rem;
+}
+.menu-btn:focus{
+    border: none;   
+}
+.cart{
+    float: right;
+    margin: 2.5rem 2rem 2rem 2rem;
+}
+.login{
+    float: right;
+    margin: 2rem 2rem 2rem 2rem;
+    font-weight: 700;
+}
+li {
+    float: left;
+    color: rgb(139, 139, 177);
+    font-size: 3rem;
+    font-family: 'Quicksand';
+}
+
+li a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(139, 139, 177);
+    font-size: 3rem;
+}
+
+
+.search{
+    width: 600px;
+    margin: 0px auto;
+    margin-top: 6rem;
+}
+.search-box{
+    width: 100%;
+    border: none;
+    height: 10rem;
+}
+.search-box[type="text"]
+{
+    font-size:5rem;
+    font-family: 'Quicksand';
+    font-weight: 700;
+}
+.search-box:focus{
+    outline: 0;
+}
+.item{
+    height: 34rem;
+    width: 32.5rem;
+    border-radius: 2rem;
+    border: 2px solid rgb(130, 228, 245);
+}
+.home-demo{
+    margin-top: 10rem;
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    background-color: rgb(130, 228, 245);
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.side-menu{
+    font-size:30px;
+    cursor:pointer; 
+}
+.heading{
+    font-family: 'Quicksand';
+    font-size: 3rem;
+    font-weight: 600;
+}
