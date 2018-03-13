@@ -1,0 +1,44 @@
+<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDiltDwaJMrEeq5w9b9Gzk0wojY-KJCmhs",
+        authDomain: "https://facultyfeedbackmjcet.firebaseapp.com",
+        databaseURL: "https://facultyfeedbackmjcet.firebaseio.com",
+        projectId: "facultyfeedbackmjcet",
+        storageBucket: "gs://facultyfeedbackmjcet.appspot.com",
+        messagingSenderId: "384734118263"
+    };
+    firebase.initializeApp(config);
+    
+    firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                console.log("User is logged in");
+                var number=localStorage.getItem("phoneNumber");
+                // firebase.database().ref('users/' + number).set({
+                //         phoneNumber: number
+                //     });
+                var ref = firebase.database().ref("/users/");
+                ref.once("value")
+                    .then(function (snapshot) {
+                        var isOldUser = snapshot.hasChild(number);
+                        if(!isOldUser)
+                        {   
+                            console.log("New user");
+                            document.write("New User");
+                            firebase.database().ref('users/' + number).set({
+                            phoneNumber: number
+                            });
+                        }
+                        else
+                        {
+                            console.log("Old user");
+                            document.write("Old User");
+                        }
+                        
+                    });    
+            } else {
+                console.log("User is not logged in");
+            }
+        });
+</script>

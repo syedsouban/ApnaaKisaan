@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        Firebase Phone Number Auth
+    </title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <style>
+        
+        input[type="text"]
+        {
+            width: 25%;
+        }
+div {
+   display: table;
+   width: 100%;
+}
+form {
+   display: table-cell;
+   text-align: center;
+   vertical-align: center;
+   
+}
+
+    </style>
+</head>
+
+
+<body>
+    <div>
+    <form id="form">
+        <br>
+        <input type="text" id="tel" placeholder="Enter your Mobile Number"><br><br>
+        <input type="button" value="VERIFY" data-toggle="button" id="verify-btn" onclick="clicked()" class="btn btn-light"><br><br>
+        <input type="text" id="verificationcode" placeholder="Enter verification code" ><br><br>
+        <input type="button" value="SUBMIT" onclick="myFunction()" class="btn btn-primary" data-toggle="button"><br><br>
+    </form>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+                apiKey: "AIzaSyDiltDwaJMrEeq5w9b9Gzk0wojY-KJCmhs",
+                authDomain: "https://facultyfeedbackmjcet.firebaseapp.com",
+                databaseURL: "https://facultyfeedbackmjcet.firebaseio.com",
+                projectId: "facultyfeedbackmjcet",
+                storageBucket: "gs://facultyfeedbackmjcet.appspot.com",
+                messagingSenderId: "384734118263"
+            };
+        firebase.initializeApp(config);
+    </script>
+    <script type="text/javascript"> 
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('verify-btn', {
+                'size': 'invisible',
+                'callback': function (response) {
+        
+                    console.log("In recaptcha!");
+                    // reCAPTCHA solved, allow signInWithPhoneNumber.
+                    
+                }
+            });
+            firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+        var myFunction = function () {
+            window.confirmationResult.confirm(document.getElementById("verificationcode").value)
+                .then(function (result) {
+                    
+                    var input = document.getElementById("tel");
+                    var n=input.value;
+                    localStorage.setItem("phoneNumber",n);
+                    // firebase.database().ref('users/' + n).set({
+                    //     number: n
+                    // })
+                    // ;
+                    window.location.href = "dashboard.html";
+                }, function (error) {
+                    alert(error);
+                });
+        };
+        function clicked() {
+            console.log("Clicked");
+            var input=document.getElementById("tel");
+            firebase.auth().signInWithPhoneNumber(input.value, window.recaptchaVerifier)
+                .then(function (confirmationResult) {
+                    console.log("In signin fun()");
+                    window.confirmationResult = confirmationResult;
+                }).catch(function (error) {
+                    // Error; SMS not sent
+                    // ...
+                    alert(error);
+                });
+        }
+        
+    </script>
+</body>
+
+</html>
