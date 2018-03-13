@@ -7,14 +7,28 @@ var nexmo = new Nexmo({
   	debug:true
   });
 
-nexmo.message.sendSms( '919700799223',  '919700799223', "hello",(err,data) => {
-	if(err){
-		console.log(err);
-	}
-	else{
-		console.log(data);
-	}
+
+
+exports.send_Sms= (req,res) => {
+	
+		
+		if(req.phoneNumber.required){
+			var ph= req.phoneNumber;
+			var msg=req.message;
+			nexmo.message.sendSms( '919700799223', ph, msg,(err,data) => {
+				if(err){
+				console.log(err);
+				}
+				else{
+				console.log(data);
+				}
 });
+
+
+
+
+		}
+}
 
 
 
